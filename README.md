@@ -1,7 +1,7 @@
 # MeasurementReport Calculator
 online calculate: https://dustinchen26.github.io/RSRP_RSRQ_SINR
 
-## Description
+## Spec
 ```
 ● NR MeasurementReport
 Ref: ETSI TS 138 331 V16.1.0 (2020-07)
@@ -17,12 +17,30 @@ Ref: ETSI TS 136 331 V15.3.0 (2018-10)
 ```
 ## Example
 ```
-nr-rsrp: 113
+// QXDM log
+1980/02/03 18:45:39.265	[0xB821]	UL_DCCH / MeasurementReport
+                        resultsSSB-Cell 
+                        {
+                          rsrp 98,
+                          rsrq 66,
+                          sinr 93
+                        }
+
+// Enter
+Input the QXDM [0xB821] UL_DCCH / MeasurementReport (rsrp/rsrq/sinr), and press the Calculate button to get the actual value
+nr-rsrp: 98
 nr-rsrq: 66
 nr-sinr: 93
 
 Calculate
-actual value RSRP = -43 dBm
+actual value RSRP = -58 dBm
 actual value RSRQ = -10.5 dB
 actual value SINR = 23.5 dB
+
+// rantcp-20230923-181708.pcap
+resultsSSB-Cell
+    rsrp: -59dBm <= SS-RSRP < -58dBm (98)
+    rsrq: -10.5dB <= SS-RSRQ < -10.0dB (66)
+    sinr: 23.0dB <= SS-SINR < 23.5dB (93)
+
 ```

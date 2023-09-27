@@ -2,93 +2,165 @@
   Copyright © [2023] [Dustin_Chen]. All rights reserved.
   Author: Dustin_Chen
   Email:  Dustin_Chen@compal.com or chuhpsdustin@gmail.com
--->  
+-->
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>MeasurementReport Calculator</title>
-    <style>
-        /* 调整输入框和按钮的宽度 */
-        input[type="number"] {
-            width: 50px; /* 设置输入框宽度 */
-        }
+  <title>QXDM MeasurementReport actual value Calculator</title>
+  <style>
+    /* 调整输入框和按钮的宽度 */
+    input[type="number"] {
+      width: 50px;
+      /* 设置输入框宽度 */
+    }
 
-		/* 调整标题和标签之间的行距 */
-		h2 {
-			margin-bottom: 0px; /* 调整标题下方的行距 */
-		}
-	
-		label {
-			margin-top: 0px; /* 调整标签上方的行距 */
-		}
-		
-		/* 調整 <p> 元素的上下间距 */
-		p {
-			margin-top: 5px;    /* 调整上边距 */
-			margin-bottom: 5px; /* 调整下边距 */
-		}
-		
-    </style>
-    <script>
-        function calculateNR() {
-            var rsrp = parseFloat(document.getElementById('nr-rsrp').value);
-            var rsrq = parseFloat(document.getElementById('nr-rsrq').value);
-            var sinr = parseFloat(document.getElementById('nr-sinr').value);
+    /* 调整标题和标签之间的行距 */
+    h2 {
+      margin-bottom: 0px;
+      /* 调整标题下方的行距 */
+    }
 
-            var nrRSRP = rsrp - 156;
-            var nrRSRQ = (rsrq - 87) / 2;
-            var nrSINR = (sinr - 46) / 2;
+    label {
+      margin-top: 0px;
+      /* 调整标签上方的行距 */
+    }
 
-            document.getElementById('nr-result-rsrp').textContent = "actual value RSRP = " + nrRSRP + " dBm";
-            document.getElementById('nr-result-rsrq').textContent = "actual value RSRQ = " + nrRSRQ + " dB";
-            document.getElementById('nr-result-sinr').textContent = "actual value SINR = " + nrSINR + " dB";
-        }
+    /* 調整 <p> 元素的上下间距 */
+    p {
+      margin-top: 5px;
+      /* 调整上边距 */
+      margin-bottom: 5px;
+      /* 调整下边距 */
+    }
 
-        function calculateLTE() {
-            var rsrp = parseFloat(document.getElementById('lte-rsrp').value);
-            var rsrq = parseFloat(document.getElementById('lte-rsrq').value);
-            var sinr = parseFloat(document.getElementById('lte-sinr').value);
+    body {
+      line-height: 1.2;
+      font-size: 16px;
+      font-family: Roboto, sans-serif;
+    }
+  </style>
+  <script>
+    function calculateNR() {
+      var rsrp = parseFloat(document.getElementById('nr-rsrp').value);
+      var rsrq = parseFloat(document.getElementById('nr-rsrq').value);
+      var sinr = parseFloat(document.getElementById('nr-sinr').value);
 
-            var lteRSRP = rsrp - 140;
-            var lteRSRQ = (rsrq - 40) / 2;
-            var lteSINR = (sinr - 46) / 2;
+      var nrRSRP = rsrp - 156;
+      var nrRSRQ = (rsrq - 87) / 2;
+      var nrSINR = (sinr - 46) / 2;
 
-            document.getElementById('lte-result-rsrp').textContent = "actual value RSRP = " + lteRSRP + " dBm";
-            document.getElementById('lte-result-rsrq').textContent = "actual value RSRQ = " + lteRSRQ + " dB";
-            document.getElementById('lte-result-sinr').textContent = "actual value SINR = " + lteSINR + " dB";
-        }
-    </script>
+      document.getElementById('nr-result-rsrp').textContent = "actual value RSRP = " + nrRSRP + " dBm";
+      document.getElementById('nr-result-rsrq').textContent = "actual value RSRQ = " + nrRSRQ + " dB";
+      document.getElementById('nr-result-sinr').textContent = "actual value SINR = " + nrSINR + " dB";
+    }
+
+    function calculateLTE() {
+      var rsrp = parseFloat(document.getElementById('lte-rsrp').value);
+      var rsrq = parseFloat(document.getElementById('lte-rsrq').value);
+      var sinr = parseFloat(document.getElementById('lte-sinr').value);
+
+      var lteRSRP = rsrp - 140;
+      var lteRSRQ = (rsrq - 40) / 2;
+      var lteSINR = (sinr - 46) / 2;
+
+      document.getElementById('lte-result-rsrp').textContent = "actual value RSRP = " + lteRSRP + " dBm";
+      document.getElementById('lte-result-rsrq').textContent = "actual value RSRQ = " + lteRSRQ + " dB";
+      document.getElementById('lte-result-sinr').textContent = "actual value SINR = " + lteSINR + " dB";
+    }
+  </script>
 </head>
-<body>
-    <h1>MeasurementReport Calculator</h1>
-	<p style="margin: 0;">Author: Dustin_Chen, email: <a href="mailto:Dustin_Chen@compal.com" style="line-height: 1;">Dustin_Chen@compal.com</a> or <a href="mailto:chuhpsdustin@gmail.com" style="line-height: 1;">chuhpsdustin@gmail.com</a></p>
-    <div class="measurement-form">
-        <h2>NR MeasurementReport</h2>
-		<p class="p">● Ref: ETSI TS 138 331 V16.1.0 (2020-07)</p>
-		<p class="p">> input RSRP-Range ::= INTEGER(0..127), the actual value is (IE value – 156) dBm. except for the IE value 127, in which case the actual value is infinity. </p>
-		<p class="p">> input RSRQ-Range ::= INTEGER(0..127), the actual value is (IE value – 87) / 2 dB.</p>
-		<p class="p">> input SINR-Range ::= INTEGER(0..127), the actual value is (IE value – 46) / 2 dB.</p>
-        <label>nr-rsrp: <input type="number" id="nr-rsrp"></label><br>
-        <label>nr-rsrq: <input type="number" id="nr-rsrq"></label><br>
-        <label>nr-sinr: <input type="number" id="nr-sinr"></label><br>
-        <button onclick="calculateNR()">Calculate</button><br>
-        <div id="nr-result-rsrp"></div>
-        <div id="nr-result-rsrq"></div>
-        <div id="nr-result-sinr"></div>
 
-        <h2>LTE MeasurementReport</h2>
-		<p class="p">● Ref: ETSI TS 136 331 V15.3.0 (2018-10)</p>
-		<p class="p">> input RSRP-Range ::= INTEGER(0..97), For RSRP: RSRP based threshold for event evaluation. The actual value is field value – 140 dBm. </p>
-		<p class="p">> input RSRQ-Range ::= INTEGER(0..34), For RSRQ: RSRQ based threshold for event evaluation. The actual value is (field value – 40)/2 dB.</p>
-		<p class="p">> input RS-SINR-Range-r13 ::= INTEGER(0..127), For RS-SINR: RS-SINR based threshold for event evaluation. The actual value is (field value -46)/2 dB.</p>		
-        <label>lte-rsrp: <input type="number" id="lte-rsrp"></label><br>
-        <label>lte-rsrq: <input type="number" id="lte-rsrq"></label><br>
-        <label>lte-sinr: <input type="number" id="lte-sinr"></label><br>
-        <button onclick="calculateLTE()">Calculate</button><br>
-        <div id="lte-result-rsrp"></div>
-        <div id="lte-result-rsrq"></div>
-        <div id="lte-result-sinr"></div>
-    </div>
+<body>
+  <h1>QXDM MeasurementReport actual value Calculator</h1>
+  <p style="margin: 0;">Author: Dustin_Chen, email: <a href="mailto:Dustin_Chen@compal.com"
+      style="line-height: 1;">Dustin_Chen@compal.com</a> or <a href="mailto:chuhpsdustin@gmail.com"
+      style="line-height: 1;">chuhpsdustin@gmail.com</a></p>
+  <div class="measurement-form">
+    <ul>
+      <li>
+        <strong>NR MeasurementReport</strong>
+        <ul>
+          <li>
+            <p>Ref: ETSI TS 138 331 V16.1.0 (2020-07)</p>
+            <ul>
+              <li>
+                RSRP-Range ::= INTEGER(0..127), the actual value is (IE value – 156) dBm. except for the IE value 127,
+                in which case the actual value is infinity.
+              </li>
+              <li>
+                RSRQ-Range ::= INTEGER(0..127), the actual value is (IE value – 87) / 2 dB
+              </li>
+              <li>
+                SINR-Range ::= INTEGER(0..127), the actual value is (IE value – 46) / 2 dB.
+              </li>
+            </ul>
+          </li><br>
+          <li>
+            Input the QXDM [0xB821]	UL_DCCH / MeasurementReport (rsrp/rsrq/sinr), and press the Calculate button to get the actual value
+            <ul>
+              <li>
+                <label>nr-rsrp: <input type="number" id="nr-rsrp"></label><br>
+              </li>
+
+              <li>
+                <label>nr-rsrq: <input type="number" id="nr-rsrq"></label><br>
+              </li>
+
+              <li>
+                <label>nr-sinr: <input type="number" id="nr-sinr"></label><br>
+              </li>
+              <button onclick="calculateNR()">Calculate</button><br>
+              <div id="nr-result-rsrp"></div>
+              <div id="nr-result-rsrq"></div>
+              <div id="nr-result-sinr"></div>
+            </ul>
+          </li>
+        </ul>
+      </li> </br>
+      <li>
+        <strong>LTE MeasurementReport</strong>
+        <ul>
+          <li>
+            Ref: ETSI TS 136 331 V15.3.0 (2018-10)
+            <ul>
+              <li>
+                RSRP-Range ::= INTEGER(0..97), For RSRP: RSRP based threshold for event evaluation. The actual value is
+                field value – 140 dBm.
+              </li>
+              <li>
+                RSRQ-Range ::= INTEGER(0..34), For RSRQ: RSRQ based threshold for event evaluation. The actual value is
+                (field value – 40)/2 dB
+              </li>
+              <li>
+                RS-SINR-Range-r13 ::= INTEGER(0..127), For RS-SINR: RS-SINR based threshold for event evaluation. The
+                actual value is (field value -46)/2 dB
+              </li>
+            </ul>
+          </li><br>
+          <li>
+            Input the QXDM LTE MeasurementReport (rsrp/rsrq/sinr) and press the Calculate button to get the actual value
+            <ul>
+              <li>
+                <label>lte-rsrp: <input type="number" id="lte-rsrp"></label><br>
+              </li>
+              <li>
+                <label>lte-rsrq: <input type="number" id="lte-rsrq"></label><br>
+              </li>
+              <li>
+                <label>lte-sinr: <input type="number" id="lte-sinr"></label><br>
+              </li>
+              <button onclick="calculateLTE()">Calculate</button><br>
+              <div id="lte-result-rsrp"></div>
+              <div id="lte-result-rsrq"></div>
+              <div id="lte-result-sinr"></div>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </body>
+
 </html>
