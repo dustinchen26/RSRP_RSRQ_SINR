@@ -6,7 +6,6 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>QXDM MeasurementReport actual value Calculator</title>
   <style>
@@ -40,6 +39,46 @@
       font-size: 16px;
       font-family: Roboto, sans-serif;
     }
+
+    /* 添加表格框线 */
+    table {
+      border-collapse: collapse;
+      border: 1px solid #000;
+      /* 表格整体边框 */
+      border-spacing: 0;
+    }
+
+    table td,
+    table th:first-child {
+    text-align: center;	
+      border: 1px solid #000;
+      /* 表格单元格边框 */
+      padding: 1px;
+      /* 可选：添加单元格内边距，使表格看起来更美观 */
+    }
+
+    /* 设置表格第一列的底色为灰色 */
+    table tr:first-child td {
+      background-color: gray;
+      color: white;
+      /* 将文字颜色设置为白色 */
+    }
+
+    .red-text {
+      color: red;
+    }
+	
+    .green-text {
+      color: green;
+    }
+
+    .blue-text {
+      color: blue;
+    }	
+	
+    .purple-text {
+      color: purple;
+    }	
   </style>
   <script>
     function calculateNR() {
@@ -83,33 +122,97 @@
         <strong>NR MeasurementReport</strong>
         <ul>
           <li>
+            <p>Ref: O-RAN.TIFG.E2E-Test.0-v04.00. Table 3-2 RSRP and SINR thresholds for various radio conditions </p>
+            <ul>
+              <div class="table-container">
+                <table>
+                  <tr>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0">Radio conditions</p>
+                    </td>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0">RSRP (dBm) </p>
+                    </td>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0">DL SINR (dB) </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0"><span class="red-text"> Excellent (cell centre) </span> </p>
+                    </td>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0"><span class="red-text"> -75 < RSRP </span> </p>
+                    </td>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0"><span class="red-text"> 25 < SINR </span> </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0"><span class="green-text"> Good </span></p>
+                    </td>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0"><span class="green-text"> -90 ≤ RSRP ≤ -75 </span></p>
+                    </td>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0"><span class="green-text"> 15 ≤ SINR ≤ 20 </span></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0"><span class="blue-text"> Fair </span></p>
+                    </td>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0"><span class="blue-text"> -105 ≤ RSRP ≤ -90 </span></p>
+                    </td>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0"><span class="blue-text"> 5 ≤ SINR ≤ 10 </span></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0"><span class="purple-text"> Poor (cell edge) </span></p>
+                    </td>
+                    <td>
+                      <p style="margin-top: 0; margin-bottom: 0"><span class="purple-text"> RSRP < -105 </span></p> 
+					</td> 
+					<td>
+                      <p style="margin-top: 0; margin-bottom: 0"><span class="purple-text"> SINR < 5 </span></p> 
+					</td> 
+				  </tr> 
+				</table> 
+			  </div> 
+			</ul> 
+		  </li> 
+		<li>
             <p>Ref: ETSI TS 138 331 V16.1.0 (2020-07)</p>
             <ul>
-              <li>
-                RSRP-Range ::= INTEGER(0..127), the actual value is (IE value – 156) dBm. except for the IE value 127,
-                in which case the actual value is infinity.
-              </li>
-              <li>
-                RSRQ-Range ::= INTEGER(0..127), the actual value is (IE value – 87) / 2 dB
-              </li>
-              <li>
-                SINR-Range ::= INTEGER(0..127), the actual value is (IE value – 46) / 2 dB.
-              </li>
+                <li>
+                    RSRP-Range ::= INTEGER(0..127), the actual value is (IE value – 156) dBm. except for the IE value 127, in which case the actual value is infinity.
+                </li>
+                <li>
+                    RSRQ-Range ::= INTEGER(0..127), the actual value is (IE value – 87) / 2 dB
+                </li>
+                <li>
+                    SINR-Range ::= INTEGER(0..127), the actual value is (IE value – 46) / 2 dB.
+                </li>
             </ul>
-          </li><br>
+        </li>
+
           <li>
-            Input the QXDM [0xB821]	UL_DCCH / MeasurementReport (rsrp/rsrq/sinr), and press the Calculate button to get the actual value
+            Input the <strong>QXDM [0xB821] UL_DCCH / MeasurementReport (rsrp/rsrq/sinr)</strong>, and press the "Calculate" button to get the actual value
             <ul>
               <li>
-                <label>nr-rsrp: <input type="number" id="nr-rsrp"></label><br>
+                <label>rsrp: <input type="number" id="nr-rsrp"></label><br>
               </li>
 
               <li>
-                <label>nr-rsrq: <input type="number" id="nr-rsrq"></label><br>
+                <label>rsrq: <input type="number" id="nr-rsrq"></label><br>
               </li>
 
               <li>
-                <label>nr-sinr: <input type="number" id="nr-sinr"></label><br>
+                <label>sinr: <input type="number" id="nr-sinr"></label><br>
               </li>
               <button onclick="calculateNR()">Calculate</button><br>
               <div id="nr-result-rsrp"></div>
@@ -138,18 +241,18 @@
                 actual value is (field value -46)/2 dB
               </li>
             </ul>
-          </li><br>
+          </li>
           <li>
-            Input the QXDM LTE MeasurementReport (rsrp/rsrq/sinr) and press the Calculate button to get the actual value
+            Input the <strong>QXDM LTE MeasurementReport (rsrp/rsrq/sinr) </strong>, and press the Calculate button to get the actual value
             <ul>
               <li>
-                <label>lte-rsrp: <input type="number" id="lte-rsrp"></label><br>
+                <label>rsrp: <input type="number" id="lte-rsrp"></label><br>
               </li>
               <li>
-                <label>lte-rsrq: <input type="number" id="lte-rsrq"></label><br>
+                <label>rsrq: <input type="number" id="lte-rsrq"></label><br>
               </li>
               <li>
-                <label>lte-sinr: <input type="number" id="lte-sinr"></label><br>
+                <label>sinr: <input type="number" id="lte-sinr"></label><br>
               </li>
               <button onclick="calculateLTE()">Calculate</button><br>
               <div id="lte-result-rsrp"></div>
