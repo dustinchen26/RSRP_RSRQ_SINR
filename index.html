@@ -204,15 +204,15 @@
             Input the <strong>QXDM [0xB821] UL_DCCH / MeasurementReport (rsrp/rsrq/sinr)</strong>, and press the "Calculate" button to get the actual value
             <ul>
               <li>
-                <label>rsrp: <input type="number" id="nr-rsrp"></label><br>
+                <label>rsrp: <input type="number" id="nr-rsrp" required value="98" ></label><br>
               </li>
 
               <li>
-                <label>rsrq: <input type="number" id="nr-rsrq"></label><br>
+                <label>rsrq: <input type="number" id="nr-rsrq" required value="66" ></label><br>
               </li>
 
               <li>
-                <label>sinr: <input type="number" id="nr-sinr"></label><br>
+                <label>sinr: <input type="number" id="nr-sinr" required value="93" ></label><br>
               </li>
               <button onclick="calculateNR()">Calculate</button><br>
               <div id="nr-result-rsrp"></div>
