@@ -201,7 +201,7 @@
         </li>
 
           <li>
-            Input the <strong>QXDM [0xB821] UL_DCCH / MeasurementReport (rsrp/rsrq/sinr)</strong>, and press the "Calculate" button to get the actual value
+            Enter the <strong>QXDM [0xB821] UL_DCCH / MeasurementReport (rsrp / rsrq / sinr)</strong>, and press the "Calculate" to get the actual value
             <ul>
               <li>
                 <label>rsrp: <input type="number" id="nr-rsrp" required value="98" ></label><br>
@@ -243,16 +243,16 @@
             </ul>
           </li>
           <li>
-            Input the <strong>QXDM LTE MeasurementReport (rsrp/rsrq/sinr) </strong>, and press the Calculate button to get the actual value
+            Enter the <strong>QXDM [0xB0C0]	UL_DCCH / MeasurementReport (rsrpResult / rsrqResult / sinrResult) </strong>, and press the "Calculate" to get the actual value
             <ul>
               <li>
-                <label>rsrp: <input type="number" id="lte-rsrp"></label><br>
+                <label>rsrpResult: <input type="number" id="lte-rsrp" required value="54" ></label><br>
               </li>
               <li>
-                <label>rsrq: <input type="number" id="lte-rsrq"></label><br>
+                <label>rsrqResult: <input type="number" id="lte-rsrq" required value="26" ></label><br>
               </li>
               <li>
-                <label>sinr: <input type="number" id="lte-sinr"></label><br>
+                <label>sinrResult: <input type="number" id="lte-sinr" required value="102" ></label><br>
               </li>
               <button onclick="calculateLTE()">Calculate</button><br>
               <div id="lte-result-rsrp"></div>
